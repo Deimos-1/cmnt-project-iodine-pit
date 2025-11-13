@@ -1,0 +1,8 @@
+# All files built by the project are ignored, they are built upon execution.
+# This allows a cleaner repo with only necessary files.
+
+# Data: 
+data/
+
+# executables:
+*.exe
