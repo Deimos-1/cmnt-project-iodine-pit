@@ -4,5 +4,8 @@
 # Data: 
 data/
 
+# Libraries:
+include/
+
 # executables:
-*.exe
+bin/

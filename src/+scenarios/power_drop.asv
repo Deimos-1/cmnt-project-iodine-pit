@@ -1,0 +1,66 @@
+
+function power_drop(neutronFlux, data)
+
+    dI = @(I, flux) utils.dI_dt(...
+            data.fissionYield.I135, ...
+            data.macroFissionSection, ...
+            flux, ...
+            data.halfLife_hr.I135, ...
+            I...
+        );
+
+    dX = @(I, X, flux) utils.dX_dt( ...
+            data.fissionYield.Xe135, ...
+            data.macroFissionSection, ...
+            flux, ...
+            data.halfLife_hr.I135, ...
+            I, ...
+            data.halfLife_hr.Xe135, ...
+            X, ...
+            data.absobtionSection.Xe135...
+        );
+
+    % coupled system to feed into ode15s
+    % strucutre given by ChatGPT 
+    function dy = coupled_iod_xe(t, y, flux)
+        I = y(1); X = y(2);
+        delta_I = dI(I, flux);
+        delta_X = dX(I, X, flux);
+        dy = [delta_I; delta_X];
+    end
+    
+    % analytical equilibrium concentration
+    I0 = data.fissionYield.I135*data.macroFissionSection*neutronFlux ...
+        /utils.decayConst(data.halfLife_hr.I135) ;
+    assert(dI(I0, neutronFlux) == 0)
+
+    % equilibrium concentration
+    Xeq = fzero(@(Xe) dX(I0, Xe, neutronFlux), 1e20);
+    assert(dX(I0, Xeq, neutronFlux) == 0)
+
+    % timespan
+    t0 = 0;
+    tf = 100*3600; % 100 hr should be enough
+    tspan = [0, tf];
+
+    
+    %% Looping through power drop scenarios
+    for i = 0:0.1:1 % all 10's % of the neutron flux
+        
+        % initial conditions
+        flux = neutronFlux*i;
+        y0 = [I0; Xeq];            
+        opts = odeset('RelTol',1e-6,'AbsTol',1e-9);
+        [TT, YY] = ode15s(@(t,y) coupled_iod_xe(t,y,flux), tspan, y0, opts);
+        % cols: t, I, X
+        [TT_R, II]
+
+        hold on
+        plot(TT/3600, (data.absobtionSection.Xe135/(2.3*data.macroFissionSection))*YY(:,2)); xlabel('t [hr]'); ylabel('Xenon reactivity effect');
+
+    end
+    grid on
+    grid minor
+
+end
+
