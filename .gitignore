@@ -9,3 +9,9 @@ include/
 
 # executables:
 bin/
+
+# results:
+results/
+
+# tex source files from the report:
+tex/

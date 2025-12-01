@@ -1,4 +1,4 @@
-function T = newtonsolver(f, y0, t0, dt, tf)
+function T = eulersolver(f, y0, t0, dt, tf)
 
     Niter = floor((tf - t0)/dt) + 1;
     Y = y0*ones(1,Niter);

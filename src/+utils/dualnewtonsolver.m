@@ -1,4 +1,4 @@
-function T = dualnewtonsolver(dX, dI, I0, X0, t0, dt, tf)
+function T = dualeulersolver(dX, dI, I0, X0, t0, dt, tf)
 
     Niter = floor((tf - t0)/dt) + 1;
     I = I0*ones(1,Niter); 

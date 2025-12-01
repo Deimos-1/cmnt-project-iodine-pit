@@ -11,7 +11,7 @@ function iodine(neutronFlux, data)
     I_t = @(t, I0) utils.I(data.fissionYield.I135, data.macroFissionSection, neutronFlux, data.halfLife_hr.I135, I0, t);
 
     %% solving
-    T = utils.newtonsolver(dI, I0, 0, dt, tf);
+    T = utils.eulersolver(dI, I0, 0, dt, tf);
 
     %% plotting the results
     hold on
