@@ -1,5 +1,5 @@
 
-function power_drop(neutronFlux, data)
+function power_drop(data)
 
     dI = @(I, flux) utils.dI_dt(...
             data.fissionYield.I135, ...
@@ -30,15 +30,15 @@ function power_drop(neutronFlux, data)
     end
     
     % analytical equilibrium concentration
-    I0 = data.fissionYield.I135*data.macroFissionSection*neutronFlux ...
+    I0 = data.fissionYield.I135*data.macroFissionSection*data.nominalNeutronFlux ...
         /utils.decayConst(data.halfLife_hr.I135) ;
-    assert(dI(I0, neutronFlux) == 0)
+    assert(dI(I0, data.nominalNeutronFlux) == 0)
 
     % equilibrium concentration
-    Xeq = fzero(@(Xe) dX(I0, Xe, neutronFlux), 1e20);
+    Xeq = fzero(@(Xe) dX(I0, Xe, data.nominalNeutronFlux), 1e20);
     fprintf("Xeq = %0.2f \n", Xeq);
     fprintf("Ieq = %0.2f \n", I0);
-    assert(dX(I0, Xeq, neutronFlux) == 0)
+    assert(dX(I0, Xeq, data.nominalNeutronFlux) == 0)
 
     % timespan
     t0 = 0;
@@ -50,7 +50,7 @@ function power_drop(neutronFlux, data)
     for i = 0:0.1:1 % all 10's % of the neutron flux
         
         % initial conditions
-        flux = neutronFlux*i;
+        flux = data.nominalNeutronFlux*i;
         y0 = [I0; Xeq];            
         opts = odeset('RelTol',1e-6,'AbsTol',1e-9);
         
@@ -79,8 +79,8 @@ function power_drop(neutronFlux, data)
         
     end
     % Results from the C implementation are matching
-    % Cres = readtable("../results/results.csv"); 
-    % plot(Cres.t / 3600, (data.absobtionSection.Xe135/(2.3*data.macroFissionSection))*Cres.X, LineStyle='-.', LineWidth=1.5);
+    Cres = readtable("../results/results.csv"); 
+    plot(Cres.t / 3600, 1e5*(data.absobtionSection.Xe135/(2.3*data.macroFissionSection))*Cres.X, LineStyle='-.', LineWidth=1.5, Color='black');
     grid on
     grid minor
 
