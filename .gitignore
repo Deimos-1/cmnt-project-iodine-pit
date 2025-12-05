@@ -18,7 +18,7 @@ results/
 tex/
 
 # Dead code: 
-src/+scenarios
-src/+tests
+src/+scenarios/
+src/+tests/
 src/+utils/*
 !src/+utils/concentration2reactivity_pcm.m
