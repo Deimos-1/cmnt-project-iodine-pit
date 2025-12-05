@@ -5,11 +5,7 @@ strData = char(rawBytes'); % transposing: columns -> rows for jsondecode
 fclose(fid); 
 data = jsondecode(strData);
 
-%% testing
-% tests.iodine(neutronFlux, data) % | OK
-% scenarios.power_drop(data) % used for comparing the C program | OK
-
-%% Analyse the results and of scenarios 
+%% Analyse the results of scenarios 
 % parse the results folder and graph them 
 
 % first find the results folder and available files

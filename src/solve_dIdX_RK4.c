@@ -191,9 +191,9 @@ int main(int varc, char * argv[]) {
 
     // load the config file and get the number of elements 
     // NEED TO PASS SCENARIO AS INPUT ARGUMENT LATER !!!
-    fp = fopen("./data/scenarios/power_drop.json", "r") ;
+    fp = fopen(argv[2], "r") ;
     if (fp == NULL) {
-        printf("Invalid file: ./data/scenarios/power_drop.json \n");
+        printf("Invalid file: %s \n", argv[2]);
         return 1;
     }
 
@@ -268,8 +268,8 @@ int main(int varc, char * argv[]) {
     tree = NULL; tempCat = NULL; tempItem = NULL;
     
     // Solve with RK4, print each step to a CSV
-    FILE * fptr = fopen(argv[2], "w");
-    if (fptr == NULL) {printf("Can't write to file: %s", argv[2]); return 1;}
+    FILE * fptr = fopen(argv[3], "w");
+    if (fptr == NULL) {printf("Can't write to file: %s", argv[3]); return 1;}
 
     // OK | if (C[0].I0 != 1753809341066586.75){printf("Incompatible result"); return 1;};
     // OK | if (C[0].X0 != 178421563086872.593750){printf("X0 doesn't match with equilibrium \n| Expected: 178421563086872.62\n| Got: %f", C[0].X0); return 1;};

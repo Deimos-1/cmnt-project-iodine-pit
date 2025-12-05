@@ -1,8 +1,9 @@
 # All files built by the project are ignored, they are built upon execution.
 # This allows a cleaner repo with only necessary files.
 
-# Data: 
-data/
+# Data except scenarios: 
+data/*
+!data/scenarios/
 
 # Libraries:
 include/
@@ -15,3 +16,9 @@ results/
 
 # tex source files from the report:
 tex/
+
+# Dead code: 
+src/+scenarios
+src/+tests
+src/+utils/*
+!src/+utils/concentration2reactivity_pcm.m
