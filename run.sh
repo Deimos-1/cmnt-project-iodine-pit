@@ -12,9 +12,3 @@ for filename in ./data/scenarios/*.json; do
 echo "> Plotting results with MATLAB... (~30s)"
 matlab -sd ./src -batch analyse_results
 echo "> Done !"
-
-
-## referencing ?              - small stuff -> no need
-## keeping old MATLAB stuff ? - Nope, use gitignore for that
-## logging ?                  - Yeah might be useful so we know programm isn't dead
-## size of the project ?      - If proposal is fullfilled, not to worry too much
