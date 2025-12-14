@@ -1,0 +1,16 @@
+{
+  "halfLife_hr": {
+	  "I135": 6.7,
+    "Xe135": 9.5  
+  },
+  "fissionYield": {
+	  "I135": 0.061,
+    "Xe135": 0.003
+  },	
+  "absorptionSection": {
+    "Xe135": 2.75e-18 
+  },
+  "macroFissionSection" : 0.008,
+  "nominalNeutronFlux" : 4.42e13,
+  "neutronsPerFission" : 2.3
+}

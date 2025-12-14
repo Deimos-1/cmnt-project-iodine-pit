@@ -2,9 +2,9 @@
     "configs" : 
     [ 
         {
-            "time_start_s"           : 0,
-            "time_end_s"             : 1,
-            "time_step_s"            : 1,
+            "time_start_s"           : 0, 
+            "time_end_s"             : 3600,
+            "time_step_s"            : 600,
             "neutron_flux_ratio"     : 1,
             "initial_iodine_per_cm3" : {
                 "equilibrium" : true,
@@ -15,10 +15,10 @@
                 "value"       : null
             }
         },{
-            "time_start_s"           : 1,
-            "time_end_s"             : 360000,
-            "time_step_s"            : 100,
+            "time_start_s"           : 3600,
+            "time_end_s"             : 252000,
+            "time_step_s"            : 3600,
             "neutron_flux_ratio"     : 0
-        }  
+        }
     ]
 }
