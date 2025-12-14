@@ -41,8 +41,9 @@ Here are the programs used to run this project.
 | GCC           | 15.2.0            | Rev8, Built by MSYS2 project                        |
 | cJSON library | > 1.7.19          | Latest version automatically downloaded by build.sh |
 | GNU bash      | 5.2.37(2)-release | Or any to run shell scripts                         |
-| MATLAB        | R2025b            |                                                     |
-|               |                   |                                                     |
+| MATLAB        | R2025b            | At least R2022b for `dictionary()`                  |
+
+This code was only tested on Windows due to the lack of Linux VM with the upper requirements.
 
 
 ### Build
