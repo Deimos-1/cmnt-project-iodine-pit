@@ -7,10 +7,10 @@ data/*
 !data/scenarios/
 
 # Libraries:
-include/
+include/*
 
 # executables:
-bin/
+bin/*
 
 # results:
 results/*
