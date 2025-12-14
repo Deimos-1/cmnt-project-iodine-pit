@@ -10,10 +10,10 @@ data/*
 include/*
 
 # executables:
-bin/*
+bin/
 
 # results:
-results/*
+results/
 
 # tex source files from the report:
 tex/
